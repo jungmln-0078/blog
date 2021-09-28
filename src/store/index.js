@@ -11,7 +11,9 @@ export default new Vuex.Store({
   },
   mutations: {
     newPost(state, payload) {
-      state.posts.push(new Post(payload.title, payload.context, payload.author, state.postid++));
+      let newPost = new Post(payload.title, payload.content, payload.author, state.postid++);
+      state.posts.push(newPost);
+      payload.newPost = newPost;
     }
   },
   actions: {

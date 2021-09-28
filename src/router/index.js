@@ -16,6 +16,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Post.vue')
   },
   {
+    path: '/post/new',
+    name: 'PostWrite',
+    component: () => import(/* webpackChunkName: "about" */ '../views/PostWrite.vue'),
+    props: true
+  },
+  {
     path: '/post/:id',
     name: 'PostView',
     component: () => import(/* webpackChunkName: "about" */ '../views/PostView.vue'),

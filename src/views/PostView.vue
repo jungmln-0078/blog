@@ -1,6 +1,8 @@
 <template>
   <div class="postview route">
-      {{ id }}
+      <h1>{{post.title}}</h1>
+      <p>Author: {{post.author}}  Created at: {{post.createdate}}</p>
+      <p class="content" v-html="post.content"></p>
   </div>
 </template>
 
@@ -15,7 +17,7 @@ export default {
         }
     },
     beforeMount() {
-        this.post = this.$store.state.posts.find(p => p.id = this.id);
+        this.post = this.$store.state.posts.find(p => p.id == this.id);
     }
 }
 </script>

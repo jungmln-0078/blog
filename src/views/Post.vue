@@ -8,19 +8,19 @@
             <col width="25%">
         </colgroup>
         <tr>
-            <th>글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>작성일자</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Created at</th>
         </tr>
         <tr v-for="post in posts" :key="post.id">
             <td><router-link :to="`/post/${post.id}`">{{ post.id }}</router-link></td>
-            <td>{{ post.title }}</td>
-            <td>{{ post.author }}</td>
-            <td>{{ post.createdate }}</td>
+            <td><router-link :to="`/post/${post.id}`">{{ post.title }}</router-link></td>
+            <td><router-link :to="`/post/${post.id}`">{{ post.author }}</router-link></td>
+            <td><router-link :to="`/post/${post.id}`">{{ post.createdate }}</router-link></td>
         </tr>
       </table>
-      <button @click="newPost">Write</button>
+      <router-link to="/post/new"><button>Write</button></router-link>
   </div>
 </template>
 
@@ -31,11 +31,6 @@ export default {
       return {
         posts: []
       }
-    },
-    methods: {
-        newPost() {
-            this.$store.commit('newPost', {title: '', context: '', author: ''});
-        }
     },
     beforeMount() {
         this.posts = this.$store.state.posts;
