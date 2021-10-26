@@ -5,26 +5,24 @@
 </template>
 
 <script>
-import { VueEditor } from 'vue2-editor';
+import { VueEditor } from 'vue3-editor';
+import { ref, computed } from 'vue';
 
 export default {
   name: "Editor",
   components: {
     VueEditor
   },
-  data() {
-      return {
-         content: ""
-      }
-  },
-  computed: {
-    editorContent: {
-      get() { return this.content },
+  setup(_, context) {
+    const content = ref("");
+    const editorContent = computed({
+      get() { return content.value },
       set(updatedContent) { 
-          this.content = updatedContent;
-          this.$emit('updateContent', updatedContent);
+          content.value = updatedContent;
+          context.emit('updateContent', updatedContent);
       }
-    },
-  },
+    });
+    return { content, editorContent }
+  }
 };
 </script>

@@ -25,15 +25,15 @@
 </template>
 
 <script>
+import { onMounted, ref } from 'vue';
+import { useStore } from 'vuex';
 export default {
     name: "post",
-    data() {
-      return {
-        posts: []
-      }
-    },
-    beforeMount() {
-        this.posts = this.$store.state.posts;
+    setup() {
+      const posts = ref([]);
+      const store = useStore();
+      onMounted(() => { posts.value = store.state.posts; });
+      return { posts }
     }
 }
 </script>

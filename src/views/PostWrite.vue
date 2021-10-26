@@ -11,38 +11,40 @@
 
 <script>
 import Editor from "@/components/Editor";
+import router from '../router'
+import { useStore } from 'vuex';
+import { reactive, toRefs } from 'vue';
 export default {
     name: "PostWrite",
     components: {
         Editor
     },
-    data() {
-        return {
+    setup() {
+        const store = useStore();
+        const state = reactive({
             title: "",
             content: "",
             author: ""
-        }
-    },
-    methods: {
-        newPost() {
-            if (this.title === "") {
+        });
+        const newPost = () => {
+            if (state.title === "") {
                 alert("Please Insert the title");
-            } else if (this.content === "") {
+            } else if (state.content === "") {
                 alert("Please Insert the content");
             } else {
                 let payload = {
-                    title: this.title, 
-                    content: this.content,
-                    author: this.author || "Anonymous"
+                    title: state.title, 
+                    content: state.content,
+                    author: state.author || "Anonymous"
                 }
-                this.$store.commit('newPost', payload);
-                this.$router.push(`/post/${payload.newPost.id}`);
+                store.commit('newPost', payload);
+                router.push(`/post/${payload.newPost.id}`);
             }
-        },
-        updateContent(newContent) {
-            this.content = newContent;
-            this.$forceUpdate();
         }
+        const updateContent = (newContent) => {
+            state.content = newContent;
+        }
+        return { ...toRefs(state), newPost, updateContent }
     }
 }
 </script>

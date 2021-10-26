@@ -13,3 +13,4 @@ button { margin: 8px; padding: 8px; border-color: lightgray; border-radius: 5px;
 .postwrite input { height: 30px; font-size: 17px; }
 .ql-editor { height: 670px !important; }
 .postview .content { border: 1px solid gray; height: 670px;}
+.notfound h1 { text-align: center; margin-top: 25%; }
